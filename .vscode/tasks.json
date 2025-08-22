@@ -4,7 +4,7 @@
 		{
 			"type": "shell",
 			"label": "Run FastAPI server",
-			"command": "/Users/cyphahimself/Desktop/budget-pro/Budject_Pro/.venv/bin/python -m uvicorn backend.app.main:app --reload --host 0.0.0.0 --port 8000",
+			"command": ".\\.venv\\Scripts\\python.exe -m uvicorn backend.app.main:app --reload --host 0.0.0.0 --port 8000",
 			"args": [],
 			"group": "build",
 			"isBackground": true,
