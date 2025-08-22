@@ -319,6 +319,21 @@ body.light-theme .no-budgets-message {
     border-radius: 2px;
 }
 
+/* Ensure Font Awesome icons are visible */
+.nav-item i {
+    font-size: 18px;
+    display: inline-block !important;
+    width: auto !important;
+    height: auto !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.nav-item i.fas {
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important;
+}
+
 .sidebar-footer {
     margin-top: auto;
 }

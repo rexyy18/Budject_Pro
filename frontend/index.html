@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BudgetTrackr - Glassmorphism Dashboard</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -201,6 +200,11 @@
                 <div class="settings-grid">
                     <div class="setting-card glass">
                         <h3>Preferences</h3>
+                        <!-- ...existing code... -->
+                                            <div class="setting-group">
+                            <label for="user-name">User Name</label>
+                            <input type="text" id="user-name" placeholder="Enter your name">
+                        </div>
                         <div class="setting-group">
                             <label for="default-currency">Default Currency</label>
                             <select id="default-currency">
@@ -208,6 +212,9 @@
                                 <option value="USD">USD ($)</option>
                                 <option value="EUR">EUR (€)</option>
                             </select>
+                        </div>
+                        <div class="setting-group">
+                            <button class="btn btn-primary" id="save-general-settings"><i class="fas fa-save"></i> Save Settings</button>
                         </div>
                         <div class="setting-group">
                             <label>Theme</label>
@@ -278,11 +285,13 @@
                         <div class="team-info">
                             <h4>TechNova</h4>
                             <ul class="team-members">
-                                <li><strong>Portia</strong> - Frontend Developer/ UI/UX Designer</li>
-                                <li><strong>Dzifa</strong> - Frontend Developer/ UI/UX Designer</li>
-                                <li><strong>Kwabena</strong> - Frontend Developer</li>
-                                <li><strong>Sarah Lee</strong> - UI/UX Designer</li>
-                                <li><strong>Maria Lopez</strong> - Coordinator & Video Presenter</li>
+                                <li><strong>Portia Yawa</strong> - Frontend Developer/ UI/UX Designer</li>
+                                <li><strong>Dzifa Iren</strong> - Frontend Developer/ UI/UX Designer</li>
+                                <li><strong>Kwabena Bamfo</strong> - Frontend Developer</li>
+                                <li><strong>Hawa Awalikeye</strong> - Frontend Developer</li>
+                                <li><strong>Rexford Nyarko</strong> - Coordinator & Video Presenter</li>
+                                <li><strong>Rexford Nyarko</strong> - Backend Developer and Database Architect</li>
+                                <li><strong>Joel Amissah</strong> - Backend Developer and Database Architect</li>
                             </ul>
                         </div>
                     </div>
@@ -292,7 +301,7 @@
                         <p>For technical support or feature requests, please contact our development team.</p>
                         <div class="contact-placeholder">
                             <i class="fas fa-envelope"></i>
-                            <span>support@budgettrackr.com</span>
+                            <span>welovetech@budgettrackr.com</span>
                         </div>
                     </div>
                 </div>

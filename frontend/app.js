@@ -9,7 +9,8 @@ class BudgetTrackr {
         this.categories = ['Food', 'Transport', 'Rent', 'Utilities', 'Others'];
         this.settings = {
             defaultCurrency: 'GHS',
-            theme: 'glass'
+            theme: 'glass',
+            userName: 'User'
         };
         this.usingBackend = (window.AppConfig && !!window.AppConfig.useApi) || false;
         this.currentModule = 'dashboard';
@@ -106,7 +107,6 @@ class BudgetTrackr {
         console.log('Event listeners set up');
         this.renderDashboard();
         console.log('Dashboard rendered');
-        this.updateGreeting();
         this.applyTheme();
         
         // Add loading delay for better UX
@@ -158,6 +158,7 @@ class BudgetTrackr {
                 this.renderSettings();
                 this.applyTheme();
                 this.updateCurrencyDisplay();
+                this.updateGreeting();
             })
             .catch(() => {
                 // Silent failure keeps local mode functioning
@@ -247,6 +248,25 @@ class BudgetTrackr {
                 window.ApiService.saveSettings(this.settings).catch(() => {});
             }
         });
+
+        // General settings save button
+        const saveGeneralSettingsBtn = document.getElementById('save-general-settings');
+        if (saveGeneralSettingsBtn) {
+            saveGeneralSettingsBtn.addEventListener('click', () => {
+                const userName = document.getElementById('user-name').value.trim();
+                if (userName) {
+                    this.settings.userName = userName;
+                    this.saveData();
+                    this.updateGreeting();
+                    this.showToast('Settings saved successfully', 'success');
+                    if (window.ApiService && window.ApiService.isEnabled()) {
+                        window.ApiService.saveSettings(this.settings).catch(() => {});
+                    }
+                } else {
+                    this.showToast('Please enter a valid user name', 'error');
+                }
+            });
+        }
 
         // API settings controls
         const useApiEl = document.getElementById('use-backend-api');
@@ -465,6 +485,7 @@ class BudgetTrackr {
     }
 
     renderDashboard() {
+        this.updateGreeting();
         this.updateDashboardStats();
         this.renderBudgetTrendsChart();
     }
@@ -728,6 +749,9 @@ class BudgetTrackr {
     }
 
     renderSettings() {
+        // Update user name
+        document.getElementById('user-name').value = this.settings.userName;
+        
         // Update default currency
         document.getElementById('default-currency').value = this.settings.defaultCurrency;
         
@@ -983,17 +1007,17 @@ class BudgetTrackr {
 
 
 
-    updateGreeting() {
+        updateGreeting() {
         const hour = new Date().getHours();
         let greeting = 'Good Morning';
-        
+
         if (hour >= 12 && hour < 17) {
             greeting = 'Good Afternoon';
         } else if (hour >= 17) {
             greeting = 'Good Evening';
         }
 
-        document.querySelector('.greeting').textContent = `${greeting}, User 👋`;
+        document.querySelector('.greeting').textContent = `${greeting}, ${this.settings.userName} 👋`;
     }
 
     openBudgetModal(budgetId = null, options = {}) {
@@ -1491,6 +1515,8 @@ class BudgetTrackr {
                 this.budgets = data.budgets || [];
                 this.categories = data.categories || ['Food', 'Transport', 'Rent', 'Utilities', 'Others'];
                 this.settings = { ...this.settings, ...data.settings };
+                // Update greeting with loaded user name
+                this.updateGreeting();
             } catch (error) {
                 console.error('Error loading saved data:', error);
             }
