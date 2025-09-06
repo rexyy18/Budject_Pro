@@ -498,7 +498,7 @@ class BudgetTrackr {
             return sum;
         }, 0);
 
-        const uniqueCategories = new Set(this.budgets.map(b => b.category)).size;
+        const uniqueCategories = this.categories.length;
         
         const upcomingBudgets = this.budgets.filter(budget => {
             const effectiveDate = new Date(budget.effectiveDate);
